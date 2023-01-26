@@ -7,7 +7,14 @@ Video conference meeting for stremagenic app - A Decentralized Video News Sharin
 ## Introduction
 
 DataDAO for DeSci Projects build on top of FVM. DataDAOs are DAOs whose mission revolves around the preservation, curation, augmentation, and promotion of datasets considered valuable by their stakeholders.
-Polygon Blockchain was the best choice for deployment to its speed and to reduce the cost of transactions while interacting with the blockchain. Lit was used for encryption, ENS for reverse name lookup, Huddle for conference meeting and XMTP for chat and interaction. NFTPort was uded to send Milestone rewards when a video hit certain number of views.
+Decentralized Science [through DataDAOs]
+DataDAOs can be used to store open access papers and journals. They can store (as proofs) the results of reproducible experiments and provide incentives for scientists to upload new papers over time. They can raise funds for research that are unorthodox or come from a unique source.
+
+Can the peer review process be made more fair (perhaps through quadratic voting)?
+
+How can scientific code be made reproducible? Often these are written as one-off scripts and can be hard to recreate, even for famous publications.
+
+We also need to enable massive scale data science on the data collected on these papers. We can make metadata analysis really easy because the data collected in a DeSci DAO can be analyzed and imputed on in a straightforward manner.
 
 ## Web 3.0 technologies Used
 
