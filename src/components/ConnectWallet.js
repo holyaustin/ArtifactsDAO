@@ -117,7 +117,7 @@ const ConnectWallet = () => {
           <Button variant="primary" sx={styles.submit }
             type="button"  onClick={connectWallet}
           >
-            {haveMetamask ? "Explore Videos" : "Install metamask"}
+            {haveMetamask ? "Explore Now" : "Install metamask"}
           </Button>
         </div>
       )}
@@ -209,6 +209,9 @@ const styles = {
   },
   submit: {
     fontSize: [1, null, null, 6],
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     mt: [0],
     minHeight: [45, null, null, 60],
     width: '100%',

@@ -2,14 +2,15 @@ require("@nomiclabs/hardhat-waffle");
 require('dotenv').config();
 
 module.exports = {
-  defaultNetwork: "hardhat",
+  defaultNetwork: "hyperspace",
   networks: {
     hardhat: {
       chainId: 1337
     },
    
-    mumbai: {
-      url: 'https://rpc-mumbai.matic.today', 
+    hyperspace: {
+      chainId: 3141,
+      url: "https://api.hyperspace.node.glif.io/rpc/v1",
       accounts: [process.env.PRIVATE_KEY],
     },
 

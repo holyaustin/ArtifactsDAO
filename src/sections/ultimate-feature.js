@@ -73,7 +73,7 @@ export default UltimateFeatures;
 
 const styles = {
   section: {
-    backgroundColor: '#c4d4f2',
+    backgroundColor: '#FFE0DF',
     pt: [8, null, null, null, 10, 14],
     pb: [8, null, null, null, 15, 16, 19],
     position: 'relative',

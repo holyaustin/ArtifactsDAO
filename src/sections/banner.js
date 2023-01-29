@@ -16,6 +16,7 @@ import { useState } from 'react';
 import { rgba } from 'polished';
 import Image from '../components/image';
 import ConnectWallet from "../components/ConnectWallet";
+import ConnectWallet2 from "../components/ConnectWallet2";
 
 // import serverRack from './assets/images/server-rack.png';
 
@@ -26,21 +27,24 @@ const Banner = () => {
       <Container>
         <Box sx={styles.grid}>
           <Box as="form" sx={styles.domainCard}>
-            <Heading>STREAMAGENIC</Heading>
-            <div style={{fontSize: '24px', marginRight: '0.5rem', fontWeight: 'bold'}}>
+            <Heading>ArtifactsDAO</Heading>
+            <div style={{fontSize: '20px', marginRight: '0.5rem', fontWeight: 'bold'}}>
               <p>
-              Decentralized Video News Sharing Platform. Where you can explore video News on Demand (NOD) and share them with friends and loved ones. Contribute as an eye witness by publishing your news here. Try it out, Its entirely free!.
+              A decentralized Peer Review DataDAO for Publishing scientific papers and the results of their reproducible experiments (Artifacts) while provide incentives for scientists to upload new papers over time. Artificats and stored on Filecoin using Filecoin's service provider data deals.
               </p>
               <br />
             </div>
+            <div className="flex inline justify-between">
             <ConnectWallet />
+            <ConnectWallet2 />
+            </div>
        
             <Text as="p" sx={styles.note} style={{color:`red`, fontSize: '15px', marginRight: '0.5rem', fontWeight: 'bold'}}>
-            Connect your wallet to get started watching your favourite videos..
+            Connect your wallet to get started or publish your scientific research paper here
             </Text>
           </Box>
           <Box as="figure" sx={styles.illustration}>
-            <Image src="/images/live2.png" loading="lazy" alt="sever-rack" />
+            <Image src="/images/f3.png" loading="lazy" alt="sever-rack" width="200%" />
           </Box>
         </Box>
       </Container>

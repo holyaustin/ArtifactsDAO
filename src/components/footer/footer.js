@@ -19,7 +19,7 @@ export default function Footer() {
           <Box sx={styles.footerTopInner}>
             <Box sx={styles.about}>
               <Box sx={styles.logo}>
-              <Image src="/images/logonew2.png" loading="lazy" sx={styles.logo} alt="logo" />
+              <Image src="/images/logolong.png" loading="lazy" sx={styles.logo} alt="logo" />
                 {/**<Logo />*/}
               </Box>
               <Box sx={styles.terms}>
@@ -28,7 +28,7 @@ export default function Footer() {
                 <Link path="#!">Privacy</Link>
               </Box>
               <Text as="p" sx={styles.copyright}>
-                Copyright by {new Date().getFullYear()} STREMAGENIC
+                Copyright by {new Date().getFullYear()} ArtifactsDAO
               </Text>
             </Box>
             {menuItems.map(({ id, title, items }) => (
@@ -43,7 +43,7 @@ export default function Footer() {
 
 const styles = {
   footer: {
-    backgroundColor: '#c4d4f2',
+    backgroundColor: '#FFE0DF',
     pt: [8, null, null, 10],
     pb: [8, null, null, 15],
   },

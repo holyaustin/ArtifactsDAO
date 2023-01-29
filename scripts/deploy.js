@@ -2,13 +2,13 @@ const hre = require("hardhat");
 const fs = require('fs');
 
 async function main() {
-  const FileNFT = await hre.ethers.getContractFactory("FileNFT");
-  const fileShare = await FileNFT.deploy();
-  await fileShare.deployed();
-  console.log("Genic Contract deployed to:", fileShare.address);
+  const Artifacts = await hre.ethers.getContractFactory("Artifacts");
+  const artifacts = await Artifacts.deploy();
+  await artifacts.deployed();
+  console.log("Genic Contract deployed to:", artifacts.address);
 
   fs.writeFileSync('./config.js', `
-  export const fileShareAddress = "${fileShare.address}"
+  export const ArtifactContractAddress = "${artifacts.address}"
   `)
 }
 

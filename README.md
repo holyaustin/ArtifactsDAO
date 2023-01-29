@@ -27,8 +27,7 @@ Blockchain deployed to:  Polygon POS Mumbai Testnet
 
 ## Description
 
-This project was made using several technologies. The front-end was designed using a server-side-rendering javascript tech known as NextJS. the latest version of Next was used because of how fast it was to build the project.  IPFS / Filecoin's W3UI from Web3.Storage was used to store user's video on their decentralized storage. videos of various news can be viewed on demand. They can share these Videos to anyone through a sharing mechansism that is easy to copy out the sharing IPFS URL.
-XMTP is used for wallet to wallet messaging using the XMTP SDK. Huddle01 was used for conference meeting.
+              A decentralized Peer Review DataDAO for Publishing scientific papers and the results of their reproducible experiments (Artifacts) while provide incentives for scientists to upload new papers over time. Papers and artifacts are stored as open access and journals. They can store (as proofs) various artifacts from their experiment. DAO members can raise funds for research that are unorthodox or come from a unique source. Artificats and stored on Filecoin using Filecoin's service provider data deals.
 
 The smart contract uses ERC-721 specification to hold metadata URI, ethers.js was used to interact with the smart contract. The contract was deployed to Mumbai blockchain. The entire project demo was hosted to Vercel.
 
@@ -86,3 +85,5 @@ E-mail - holyaustin@yahoo.com
 stay connected on twitter @holyaustin
 
 <https://live-par-1-abr-cdn.livepush.io/live_abr_cdn/emaIqCGoZw-6/index.m3u8>
+
+https://api.hyperspace.node.glif.io/rpc/v0

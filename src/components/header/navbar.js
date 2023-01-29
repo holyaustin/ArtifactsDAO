@@ -70,7 +70,7 @@ const styles = {
     '&.is-sticky': {
       top: 60,
       a: {
-        color: 'blue',
+        color: 'red',
       },
       '.active': {
         color: 'primary',
