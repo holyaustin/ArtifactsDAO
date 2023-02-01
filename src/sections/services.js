@@ -7,37 +7,56 @@ import { transform } from 'framer-motion';
 
 const services = [
   {
-    title: 'Creator owned content',
-    price: 'coc, etc'
+    title: 'Industry Machine Learning Datasets',
+    price: 'Supevised, unsupervised, Reinforcement Learning'
+  },
+
+  {   
+    title: 'Academic Research Datasets',
+    price: 'Economic, Computer Science, Statistics, etc'
   },
   {
-    title: 'Video on Demand',
-    price: 'vod, etc'
+    title: 'Historical Indexed Blockchain Datasets',
+    price: 'Block records. Block transactions etc',
   },
   {
-    title: 'Video File Shareable Link',
-    price: 'vfs, etc',
+    title: 'Blockchain Transaction Datasets',
+    price: 'Trasactions by Address, Transactions per Hour ',
   },
   {
-    title: 'Audio file Storage',
-    price: 'as, etc',
+    title: 'Large Genomic Datasets',
+    price: 'Genome Sequencing, Genome Editing,  etc'
   },
   {
-    title: 'Fast video transcoding',
-    price: 'mp4, avi, mp3, hevc, etc ',
+    title: 'Rollup Datasets',
+    price: 'Zero Knowledge Proofs, Optimistic Rollups ',
   },
   {
-    title: 'Fast video playback url',
-    price: 'fvpu, etc',
+    title: 'NFT Collections Datasets',
+    price: 'Various NFTs Statistics and Analysis',
   },
   {
-    title: 'Live event streaming',
-    price: 'les, etc ',
+    title: 'Metaverse Assets Datasets',
+    price: 'Metaverse Music, Games ',
   },
   {
-    title: 'Chat file share',
-    price: 'Anyother file type'
+    title: 'Football Video Recaps',
+    price: 'Footbal Analysis Datasets, '
   },
+
+  {
+    title: 'Government Datasets',
+    price: 'Budget, Accounting, Election etc'
+  },
+  {
+    title: 'The Wikipedia',
+    price: 'The Wikipedia Datasets'
+  },
+  {
+    title: 'Network Simulation Datasets',
+    price: 'MANETS, VANET, IOT'
+  },
+
 ];
 
 const Services = () => {
@@ -45,8 +64,8 @@ const Services = () => {
     <Box as="section" id="services" sx={styles.section}>
       <Container>
         <SectionHeading
-          slogan="Ideal solutions for you"
-          title="That your video news can make some money? Don't worry, Just upload it!"
+          slogan="Decentralize Science Artifacts"
+          title="You can publish your scientific research papers/journals with its corrending artifacts. Publish scientific artifacts in the following categories : "
         />
         <Box sx={styles.grid}>
           {services.map((service, i) => (

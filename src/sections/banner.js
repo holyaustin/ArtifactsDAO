@@ -14,21 +14,32 @@ import {
 } from 'theme-ui';
 import { useState } from 'react';
 import { rgba } from 'polished';
+import { Image as ImageBg } from 'next/image';
 import Image from '../components/image';
 import ConnectWallet from "../components/ConnectWallet";
 import ConnectWallet2 from "../components/ConnectWallet2";
+import bgPic from '../../public/images/testtube.gif';
 
 // import serverRack from './assets/images/server-rack.png';
 
 const Banner = () => {
  
   return (
-    <Box as="section" id="home" sx={styles.section}>
+    <div clasName="bg-[url('/images/g1.gif')]">
+    <Box as="section" id="home" sx={styles.section} style={{
+      backgroundImage: `url(${bgPic.src})`,
+      width: '100%',
+      height: '100%',
+      zIndex: '-1',
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover"
+    }}>
+
       <Container>
         <Box sx={styles.grid}>
           <Box as="form" sx={styles.domainCard}>
             <Heading>ArtifactsDAO</Heading>
-            <div style={{fontSize: '20px', marginRight: '0.5rem', fontWeight: 'bold'}}>
+            <div  style={{textAlign:'justify', fontSize: '20px', marginRight: '0.5rem', fontWeight: 'bold'}}>
               <p>
               A decentralized Peer Review DataDAO for Publishing scientific papers and the results of their reproducible experiments (Artifacts) while provide incentives for scientists to upload new papers over time. Artificats and stored on Filecoin using Filecoin's service provider data deals.
               </p>
@@ -49,6 +60,7 @@ const Banner = () => {
         </Box>
       </Container>
     </Box>
+    </div>
   );
 };
 
@@ -59,6 +71,11 @@ const styles = {
     backgroundColor: 'primary',
     pt: [17, null, null, 20, null],
     pb: [6, null, null, 12, 16],
+    //position: fixed,
+    height: '100vh',
+    width: '100vw',
+    //overflow: hidden,
+    zIndex: -1,
   },
   grid: {
     gap: ['30px 60px', null, null, null, '30px 40px', '30px 60px'],

@@ -1,6 +1,6 @@
 # ArtifactsDAO : DataDAO for DeSci Projects build on top of FVM
 
-![Genic](https://bafkreidugtjoxts62zsi32riqsjlpt643vnqxtaljo4tba2n2dlqvb2jyq.ipfs.w3s.link/)
+![Genic](https://bafkreic64ckzeog4qh635g2udaife6sq447tpnzdzms3lcnp4ti6hc6cjm.ipfs.w3s.link/)
 
 Video conference meeting for stremagenic app - A Decentralized Video News Sharing Platform where users upload news on demand.
 
@@ -87,3 +87,20 @@ stay connected on twitter @holyaustin
 <https://live-par-1-abr-cdn.livepush.io/live_abr_cdn/emaIqCGoZw-6/index.m3u8>
 
 https://api.hyperspace.node.glif.io/rpc/v0
+
+bafkreic64ckzeog4qh635g2udaife6sq447tpnzdzms3lcnp4ti6hc6cjm  logolong
+bafkreifossblen6jiywnkj5c6mv4yuvfth6cotkwkprpgglpr5bnx5e2u4 logoonly
+
+Ethereum address (this addresss should work for most tools): 0xa6D6f4556B022c0C7051d62E071c0ACecE5a1228
+f4address (also known as t4 address on testnets): f410fu3lpivllaiway4cr2yxaohakz3hfueri6eecg6i
+Done in 5.89s.
+
+Nothing to compile
+Wallet Ethereum Address: 0xa6D6f4556B022c0C7051d62E071c0ACecE5a1228
+Deploying Artifacts...
+Artifacts deployed to: 0x5E4e5347eB417982375Ef9BDe0B77F4322FCF79F
+Deploying FilecoinMarketConsumer...
+FilecoinMarketConsumer deployed to: 0x1B7a6536f23a16e198246A3f80Cd646f86856F11
+Deploying DealRewarder...
+DealRewarder deployed to: 0x60cF847C6Ea49009ae290F749451F4CB66CAD0B2
+Done in 218.06s.

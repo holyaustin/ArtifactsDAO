@@ -13,8 +13,8 @@ export default function IndexPage() {
     <ThemeProvider theme={theme}>
       <Layout>
         <SEO
-          title="Decentralized Video storage and sharing platform"
-          description="Storage of video files and media documents using web3 decentralized technology for on demand access with sharing made easy with web3!"
+          title="ArtifactsDAO"
+          description=" decentralized Peer Review DataDAO for Publishing scientific papers and the results of their reproducible experiments (Artifacts) while provide incentives for scientists to upload new papers over time!"
         />
         <Banner />
         <Services />

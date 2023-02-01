@@ -15,38 +15,39 @@ const data = [
   {
     id: 1,
     icon: '/images/services/1.png',
-    title: 'censorship-resistant',
-    description: `you are not policed by anyone, no restrictions from government on what to store or how to use`,
+    title: 'DAO-centric Peer Review.',
+    description: `Scientific work are peer review by experts who are members of the DAO`,
   },
   {
     id: 2,
     icon: '/images/services/2.png',
-    title: 'Bolt Performance',
-    description: `File storage and sharing with the speed of Polygon PoS blockchain transaction. `,
+    title: 'Permanent Storage for Artifacts',
+    description: `Artifacts are stored on FVM and are available for sharining. `,
   },
   {
     id: 3,
-    icon: '/images/services/3.png',
-    title: 'Secured',
-    description: `File are secured. You dont need to be worried about security of personal details. Private mode also available.`,
-  },
-  {
-    id: 4,
-    icon: '/images/services/4.png',
-    title: 'decentralized',
-    description: `No more centralized storage where a server houses your file. Kezayya stores your file in a decentralized manner by many nodes. if one node fails, you dont need to panic because other nodes have your file.`,
-  },
-  {
-    id: 5,
     icon: '/images/services/5.png',
     title: '5 Star Rating service',
     description: `We offefr great service that is second to non. Good support system and more feature been unveiled`,
   },
   {
+    id: 4,
+    icon: '/images/services/3.png',
+    title: 'Secured',
+    description: `Reaserch papers and Artifacts are secured. You dont need to be worried about security of personal details. Work are secured on the storage provider.`,
+  },
+  {
+    id: 5,
+    icon: '/images/services/4.png',
+    title: 'Decentralized',
+    description: `No more centralized storage where a server houses your file. Filecoin stores your file in a decentralized manner. if one node fails, you dont need to panic because other nodes have your work.`,
+  },
+
+  {
     id: 6,
     icon: '/images/services/6.png',
     title: 'Users own data',
-    description: `All data stored are entirely owned and managed by users`,
+    description: `All data stored are entirely the work of the researcher. The DAO help in storing and making the stored Artifacts available for reproduceable experiments in the future.`,
   },
 ];
 
