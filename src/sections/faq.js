@@ -1,4 +1,4 @@
-/** @jsxRuntime classic */
+   /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, Box, Container } from 'theme-ui';
 import Masonry from 'react-masonry-component';
@@ -9,17 +9,17 @@ const data = [
   {
     id: 1,
     ques: 'How do i start using this service?',
-    ans: `All you need is a web3 wallet. connect your wallet and start uploading your files and dtreaming videos. you also go live`,
+    ans: `All you need is a web3 wallet. connect your wallet and start uploading your artifacts with your scientific paper. You can also upload video demo`,
   },
   {
     id: 2,
     ques: 'What type of files do you support?',
-    ans: `We suppolrt all types of media files. Documents, Audiofiles and  Video files of different extensions ].`,
+    ans: `We support all types of reserach and academic work. Publish your papers and store your artificats to help reproducing such experiments in the future. genomic data, footbal videos, historical indexed blockchain and transaction data, rollup data, the Wikipedia, NFT collections, metaverse asset, machine learning datasets, government dtasets etc.`,
   },
   {
     id: 3,
-    ques: 'Do you support directory upload?',
-    ans: `We currently support  single file upload and directory upload will be added later.`,
+    ques: 'How is my paper review and accepted?',
+    ans: `The DAO uses its vote to vote for rsearch work that are viable and vote to or against such submitted work. Once your paper is accepted by the DAO, it is published and and the artificats stored by an SP.`,
   },
   {
     id: 4,
