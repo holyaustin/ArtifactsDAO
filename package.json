@@ -107,7 +107,7 @@
     "hardhat-contract-sizer": "^2.4.0",
     "hardhat-deploy": "^0.9.29",
     "hardhat-gas-reporter": "^1.0.9w",
-    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
     "imagemin-optipng": "^8.0.0",
     "imagemin-svgo": "^8.0.0",
     "next-sitemap": "^1.1.6",
