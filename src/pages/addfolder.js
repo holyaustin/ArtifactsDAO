@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'theme-ui';
+import Head from "next/head";
 import theme from '../theme';
 import SEO from '../components/seo';
 import Layout from '../components/layout2';

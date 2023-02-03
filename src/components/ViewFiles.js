@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { jsx, Box } from 'theme-ui';
 import { ethers } from "ethers";
 import axios from "axios";
+import Head from "next/head";
 import { useRouter } from 'next/router'
 import { useNavigate, useLocation } from "react-router-dom";
 import Web3Modal from "web3modal";
