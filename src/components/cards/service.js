@@ -36,7 +36,7 @@ const styles = {
     span: {
       color: 'primary',
       fontWeight: 700,
-      fontSize: [1, null, null, '24px'],
+      fontSize: [1, null, null, '18px'],
       lineHeight: 2,
     },
   },

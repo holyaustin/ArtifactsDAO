@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'theme-ui';
 import theme from '../theme';
+import Head from 'next/head';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
 import Banner from '../sections/banner';
@@ -13,6 +14,9 @@ import Faq from '../sections/faq';
 export default function IndexPage() {
   return (
     <ThemeProvider theme={theme}>
+    <Head>
+      <link rel="shortcut icon" href="/images/logo.png" />
+    </Head>
       <Layout>
         <SEO
           title="ArtifactsDAO"

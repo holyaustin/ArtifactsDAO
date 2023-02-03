@@ -8,6 +8,9 @@ import ViewFiles from '../components/ViewFiles';
 export default function Explore() {
   return (
     <ThemeProvider theme={theme}>
+          <Head>
+      <link rel="shortcut icon" href="/images/logo.png" />
+    </Head>
       <Layout>
         <SEO
           title="Add new file"

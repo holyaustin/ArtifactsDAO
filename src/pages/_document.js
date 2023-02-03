@@ -14,6 +14,9 @@ class CustomDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=DM+Sans:wght@400;500;700&display=swap"
             rel="stylesheet"
           />
+
+      <link rel="shortcut icon" href="/images/logo.png" />
+   
         </Head>
         <body>
           <Main />

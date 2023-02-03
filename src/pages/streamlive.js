@@ -8,6 +8,9 @@ import Stream from './livestream/index.tsx';
 export default function Dashboard() {
   return (
     <ThemeProvider theme={theme}>
+          <Head>
+      <link rel="shortcut icon" href="/images/logo.png" />
+    </Head>
       <Layout>
         <SEO
           title="Live Stream"

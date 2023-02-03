@@ -9,6 +9,9 @@ import Watching from '../components/watching';
 export default function AddFile() {
   return (
     <ThemeProvider theme={theme}>
+          <Head>
+      <link rel="shortcut icon" href="/images/logo.png" />
+    </Head>
       <Layout>
         <SEO
           title="Add new file"

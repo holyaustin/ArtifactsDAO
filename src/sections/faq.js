@@ -9,7 +9,7 @@ const data = [
   {
     id: 1,
     ques: 'How do i start using this service?',
-    ans: `All you need is a web3 wallet. connect your wallet and start uploading your artifacts with your scientific paper. You can also upload video demo`,
+    ans: `All you need is a web3 wallet. connect your wallet and start uploading your artifacts with your scientific paper. You can also upload video demo showcasing your experiment. This will enable those who wish to reproduce your experiment know the steps taken to arrive as your result.`,
   },
   {
     id: 2,
@@ -29,13 +29,13 @@ const data = [
 
   {
     id: 5,
-    ques: 'Can i ever look for my file?',
-    ans: `Decentralized files cannot be brought down or missing. You files are stored on multiples nodes servers. All this servers are located in diffrent locations all over the globe. Be rest assured that your files cannot just go down`,
+    ques: 'Can i ever look for my Journal paper or artifacts?',
+    ans: `Once you paper have been peer reviewed and approved by the DAO, it is published for the public and the artifiacts store permanently by the DAO. Storage of Paper and Artifacts are stored on a decentralized SP on filecoin. `,
   },
   {
     id: 6,
-    ques: 'Where can i know more about this STREMAGENIC?',
-    ans: `We are putting up a comprehensive "Getting started documentation". mean-while engage our support team on discord and do follow us on Twitter.`,
+    ques: 'How do I check if my work was approved or declined?',
+    ans: `Your dashboard will always carry list of you submitted work with their artifcats. once it is approvd, There would be a status to show that it waa approved.`,
   },
 ];
 

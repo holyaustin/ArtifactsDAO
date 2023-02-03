@@ -9,6 +9,9 @@ import Web3ui from '../components/Web3ui';
 export default function PublishNews() {
   return (
     <ThemeProvider theme={theme}>
+          <Head>
+      <link rel="shortcut icon" href="/images/logo.png" />
+    </Head>
       <Layout>
         <SEO
           title="Add new file"

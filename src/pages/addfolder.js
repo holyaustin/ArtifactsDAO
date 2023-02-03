@@ -8,6 +8,9 @@ import Mintfolder from '../components/Mintfolder';
 export default function AddFolder() {
   return (
     <ThemeProvider theme={theme}>
+          <Head>
+      <link rel="shortcut icon" href="/images/logo.png" />
+    </Head>
       <Layout>
         <SEO
           title="Add new folder"
