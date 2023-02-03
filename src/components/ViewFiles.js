@@ -14,9 +14,9 @@ import { rgba } from 'polished';
 import Popup from 'reactjs-popup';
 //import 'reactjs-popup/dist/index.css';
 
-import blenderPoster from '../../public/images/logoonlyblue.png';
-import fileNFT from "../../artifacts/contracts/Genic.sol/FileNFT.json";
-import { fileShareAddress } from "../../config";
+import blenderPoster from '../../public/images/logo.png';
+import fileNFT from "../../artifacts/contracts/Artifacts.sol/Artifacts.json";
+import { ArtifactsAddress } from "../../config";
 
 export default function ViewFiles() {
   const router = useRouter();
@@ -40,7 +40,7 @@ export default function ViewFiles() {
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(fileShareAddress, fileNFT.abi, signer);
+    const contract = new ethers.Contract(ArtifactsAddress, fileNFT.abi, signer);
     const data = await contract.fetchAllStorageItems();
     /*
     *  map over items returned from smart contract and format

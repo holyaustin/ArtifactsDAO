@@ -11,8 +11,8 @@ import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 import { rgba } from 'polished';
 import 'dotenv/config';
-import fileNFT from "../../artifacts/contracts/Genic.sol/FileNFT.json";
-import { fileShareAddress } from "../../config";
+import fileNFT from "../../artifacts/contracts/Artifacts.sol/Artifacts.json";
+import { ArtifactsAddress } from "../../config";
 const APIKEY = [process.env.NFT_STORAGE_API_KEY];
 
 const MintFile = () => {
@@ -84,8 +84,8 @@ const MintFile = () => {
 
       const privatefile = formInput.privatefile.toString();
 
-      const connectedContract = new ethers.Contract(fileShareAddress, fileNFT.abi, provider.getSigner());
-      console.log("Connected to contract", fileShareAddress);
+      const connectedContract = new ethers.Contract(ArtifactsAddress, fileNFT.abi, provider.getSigner());
+      console.log("Connected to contract", ArtifactsAddress);
       console.log("IPFS blockchain uri is ", metadata.url);
 
       const mintNFTTx = await connectedContract.createFile(metadata.url, privatefile);

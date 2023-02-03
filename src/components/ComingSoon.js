@@ -8,8 +8,8 @@ import axios from "axios";
 import { useRouter } from 'next/router'
 import Web3Modal from "web3modal";
 
-import fileNFT from "../../artifacts/contracts/Genic.sol/FileNFT.json";
-import { fileShareAddress } from "../../config";
+import fileNFT from "../../artifacts/contracts/Artifacts.sol/Artifacts.json";
+import { ArtifactsAddress } from "../../config";
 
 export default function ComingSoon() {
   const navigate = useRouter();
@@ -40,7 +40,7 @@ export default function ComingSoon() {
     const signer = provider.getSigner();
     setAddress(await signer.getAddress())
     
-    const contract = new ethers.Contract(fileShareAddress, fileNFT.abi, signer);
+    const contract = new ethers.Contract(ArtifactsAddress, fileNFT.abi, signer);
     const data = await contract.fetchMyFiles();
     console.log("Data fetch from smart contract is", data.length);
     setfme(data.length);
@@ -48,7 +48,7 @@ export default function ComingSoon() {
     const connection2 = await web3Modal.connect();
     const provider2 = new ethers.providers.Web3Provider(connection2);
     const signer2 = provider2.getSigner();
-    const contract2 = new ethers.Contract(fileShareAddress, fileNFT.abi, signer2);
+    const contract2 = new ethers.Contract(ArtifactsAddress, fileNFT.abi, signer2);
     const data2 = await contract2.fetchAllStorageItems();
     console.log("Data fetch from smart contract is", data2.length);
     setfall(data2.length);

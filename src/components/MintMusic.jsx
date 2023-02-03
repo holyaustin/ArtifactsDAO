@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 // import lit from "./lit";
-import Talent from "../utils/Talent.json";
-import { talentMusicaAddress } from "../../config";
+import fileNFT from "../../artifacts/contracts/Artifacts.sol/Artifacts.json";
+import { ArtifactsAddress } from "../../config";
 
 // eslint-disable-next-line max-len
 const APIKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDA4Zjc4ODAwMkUzZDAwNEIxMDI3NTFGMUQ0OTJlNmI1NjNFODE3NmMiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY1MzA1NjE4NzM4MCwibmFtZSI6InBlbnNpb25maSJ9.agI-2V-FeK_eVRAZ-T6KGGfE9ltWrTUQ7brFzzYVwdM";
@@ -71,8 +71,8 @@ const MintMusic = () => {
       const provider = new ethers.providers.Web3Provider(connection);
 
       // const price = ethers.utils.parseUnits(formInput.price, "ether");
-      const connectedContract = new ethers.Contract(talentMusicaAddress, Talent.abi, provider.getSigner());
-      console.log("Connected to contract", talentMusicaAddress);
+      const connectedContract = new ethers.Contract(ArtifactsAddress, Talent.abi, provider.getSigner());
+      console.log("Connected to contract", ArtifactsAddress);
       console.log("IPFS blockchain uri is ", metaData.url);
 
       const mintNFTTx = await connectedContract.createToken(metaData.url);

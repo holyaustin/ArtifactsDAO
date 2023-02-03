@@ -7,6 +7,8 @@ import Banner from '../sections/banner';
 import Services from '../sections/services';
 import UltimateFeatures from '../sections/ultimate-feature';
 import Faq from '../sections/faq';
+import ViewFiles from '../components/ViewFiles';
+import Watching from '../components/watching';
 
 export default function IndexPage() {
   return (

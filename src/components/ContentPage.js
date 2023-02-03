@@ -4,8 +4,8 @@ import { withIdentity } from './Authenticator'
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 
-import fileNFT from "../../artifacts/contracts/Genic.sol/FileNFT.json";
-import { fileShareAddress } from "../../config";
+import fileNFT from "../../artifacts/contracts/Artifacts.sol/Artifacts.json";
+import { ArtifactsAddress } from "../../config";
 
 export function ContentPage () {
   const [{ uploadedCarChunks }, uploader] = useUploader()
@@ -75,8 +75,8 @@ export function ContentPage () {
       const connection = await web3Modal.connect();
       const provider = new ethers.providers.Web3Provider(connection);
   
-      const connectedContract = new ethers.Contract(fileShareAddress, fileNFT.abi, provider.getSigner());
-      console.log("sendTxToBlockchain Connected to contract", fileShareAddress);
+      const connectedContract = new ethers.Contract(ArtifactsAddress, fileNFT.abi, provider.getSigner());
+      console.log("sendTxToBlockchain Connected to contract", ArtifactsAddress);
       console.log("sendTxToBlockchain IPFS blockchain uri is ", ipfsGateWayURL);
   
       const mintNFTTx = await connectedContract.createFile(ipfsGateWayURL, fileName, desc, fileSize);

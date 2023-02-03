@@ -15,9 +15,9 @@ import ShareLink from "react-twitter-share-link";
 import Popup from 'reactjs-popup';
 //import 'reactjs-popup/dist/index.css';
 
-import blenderPoster from '../../public/images/logoonlyblue.png';
-import fileNFT from "../../artifacts/contracts/Genic.sol/FileNFT.json";
-import { fileShareAddress } from "../../config";
+import blenderPoster from '../../public/images/logo.png';
+import fileNFT from "../../artifacts/contracts/Artifacts.sol/Artifacts.json";
+import { ArtifactsAddress } from "../../config";
 
 const containerStyle = {
   position: "relative",
@@ -92,7 +92,7 @@ export default function Watching() {
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(fileShareAddress, fileNFT.abi, signer);
+    const contract = new ethers.Contract(ArtifactsAddress, fileNFT.abi, signer);
     const data = await contract.fetchOneNews(vid);
     const data2 = await contract.fetchViews(vid);
 
@@ -171,7 +171,7 @@ export default function Watching() {
       const web3Modal = new Web3Modal();
       const connection = await web3Modal.connect();
       const provider = new ethers.providers.Web3Provider(connection);
-      const connectedContract = new ethers.Contract(fileShareAddress, fileNFT.abi, provider.getSigner());
+      const connectedContract = new ethers.Contract(ArtifactsAddress, fileNFT.abi, provider.getSigner());
       console.log("Count variable is ", vid);
 
       const mintNFTTx = await connectedContract.createViewItem(vid);
