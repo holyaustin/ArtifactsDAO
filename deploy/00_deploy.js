@@ -1,5 +1,6 @@
 require("hardhat-deploy")
 require("hardhat-deploy-ethers")
+const fs = require('fs');
 
 const { networkConfig } = require("../helper-hardhat-config")
 
@@ -40,4 +41,8 @@ module.exports = async ({ deployments }) => {
     const dealRewarder = await DealRewarder.deploy();
     await dealRewarder.deployed()
     console.log('DealRewarder deployed to:', dealRewarder.address);
+
+    fs.writeFileSync('./config.js', `
+    export const ArtifactsAddress = "${artifacts.address}"
+    `)
 }

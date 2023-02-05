@@ -56,7 +56,7 @@ export default function Header() {
           className={state.isSticky ? 'is-sticky' : ''}
         >
           <Container sx={styles.container}>
-          <Image src="/images/logoonly.png" loading="lazy" sx={styles.logo} alt="logo" />
+          <Image src="/images/logo.png" loading="lazy" sx={styles.logo} alt="logo" />
 {/**
           <Navbar2
               isSticky={state.isSticky}
@@ -74,13 +74,16 @@ export default function Header() {
           <a>Home</a>
           </Link>
           <Link href="/explore">
-          <a>News-On-Demand</a>
+          <a>Dashboard</a>
           </Link>
-          <Link href="/publishnews">
-          <a>Publish-News</a>
+          <Link href="/preprint">
+          <a>Preprints</a>
+          </Link>
+          <Link href="/publish">
+          <a>Publish</a>
           </Link>
           <Link href="/streamlive">
-          <a>Stream-Live </a>
+          <a>Approved-Artifacts </a>
           </Link>
           <Link href="/videoplayer">
           <a> Video-Player</a>

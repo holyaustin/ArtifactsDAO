@@ -24,7 +24,7 @@ const uauth = new UAuth({
   clientID: "58971f20-5524-49c9-b021-72c37275da1a",
   redirectUri:
     process.env.NODE_ENV === "production"
-      ? "https://streamagenic.vercel.app/"
+      ? "https://artifacts-dao.vercel.app/"
       : "http://localhost:3000",
 });
 
@@ -55,7 +55,7 @@ const ConnectWallet = () => {
           method: "eth_requestAccounts",
         });
         setAddress(accounts[0]);
-        navigate.push('/explore')
+        navigate.push('/members')
       } catch (error) {
         console.error(error);
       }
@@ -117,7 +117,7 @@ const ConnectWallet = () => {
           <Button variant="primary" sx={styles.submit }
             type="button"  onClick={connectWallet}
           >
-            {haveMetamask ? "Explore Now" : "Install metamask"}
+            {haveMetamask ? "Dao Member" : "Install metamask"}
           </Button>
         </div>
       )}

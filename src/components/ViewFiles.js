@@ -30,7 +30,8 @@ export default function ViewFiles() {
     loadfileNFT();
   }, []);
 
-  const rpcUrl = "https://matic-mumbai.chainstacklabs.com";
+  const rpcUrl = "https://filecoin-hyperspace.chainstacklabs.com/rpc/v1";
+  // const rpcUrl = "https://api.hyperspace.node.glif.io/rpc/v1";
    // const rpcUrl = "localhost";
 
   async function loadfileNFT() {
@@ -42,7 +43,7 @@ export default function ViewFiles() {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(ArtifactsAddress, fileNFT.abi, signer);
-    const data = await contract.fetchAllStorageItems();
+    const data = await contract.fetchAllArtifacts();
     /*
     *  map over items returned from smart contract and format
     *  them as well as fetch their token metadata
@@ -50,28 +51,19 @@ export default function ViewFiles() {
     const items = await Promise.all(data.map(async i => {
       const tokenUri = await contract.tokenURI(i.tokenId);
       console.log("token Uri is ", tokenUri);
-      const httpUri = tokenUri;
+      const httpUri = getIPFSGatewayURL(tokenUri);
       console.log("Http Uri is ", httpUri);
-      const meta = await axios.get(tokenUri);
-
-      const filename = i.fileName;
-      console.log("Filename is ", filename);
-      const created = new Date((i.dateCreated).toNumber() * 1000).toLocaleDateString();
-      console.log("date created is ", created);
-      const description = i.description;
-      console.log("description is ", description);
-      const filesize = Math.round(((i.fileSize).toString() /1000000) * 100) / 100;
-      console.log("Filesize is ", filesize);
+      const meta = await axios.get(httpUri);
 
       const item = {
         tokenId: i.tokenId.toNumber(),
-        image: httpUri,
-        name: filename,
-        created: created,
-        description: description,
-        size: filesize,
-        sharelink: httpUri,
+        image: getIPFSGatewayURL(meta.data.image),
+        name: meta.data.name,
+        description: meta.data.description,
+        sharelink: getIPFSGatewayURL(meta.data.image),
+        author: meta.data.properties.author,
       };
+
       console.log("item returned is ", item);
       return item;
     }));
@@ -79,6 +71,12 @@ export default function ViewFiles() {
     setNfts(items);
     setLoadingState("loaded");
   }
+
+  const getIPFSGatewayURL = (ipfsURL) => {
+    const urlArray = ipfsURL.split("/");
+    const ipfsGateWayURL = `https://${urlArray[2]}.ipfs.nftstorage.link/${urlArray[3]}`;
+    return ipfsGateWayURL;
+  };
 
   const copyToClipBoard = async copyMe => {
     try {
@@ -89,14 +87,14 @@ export default function ViewFiles() {
     }
   };
 
-  async function NewsDetails(nft) {
+  async function ArticleDetails(nft) {
     console.log("item id clicked is", nft.tokenId);
-    const vid = nft.tokenId;
+    const pid = nft.tokenId;
     router.push({
-        pathname: "/watch",
-        query: {vid}
+        pathname: "/review",
+        query: {pid}
       });
-      console.log('Prop result is ', { vid } )
+      console.log('Prop result is ', { pid } )
   }
 
   const PosterImage = () => {
@@ -115,19 +113,19 @@ export default function ViewFiles() {
   if (loadingState === "loaded" && !nfts.length) {
     return (
       <div sx={styles.section}>
-        <h1 className="px-20 py-10 text-3xl text-white">Empty drive, no file yet</h1>
+        <h1 className="px-20 py-10 text-3xl text-white">Empty space, no scientific publications yet</h1>
       </div>
     );
   }
   return (
     <Box as="section"  sx={styles.section}>
       <div className="bg-blue-100 text-xl text-center text-black font-bold pt-5 pb-4">
-        <h1> News on Demand Gallery</h1>
+        <h1> List of Scientific work submitted</h1>
       </div>
     <div className="flex justify-center bg-blue-100 mb-12">
 
       <div className="px-4" style={{ maxWidth: "1600px" }}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 pt-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
           {nfts.map((nft, i) => (
 
             <div key={i} className="shadow rounded-xl overflow-hidden border-2 border-white-500">
@@ -141,43 +139,22 @@ export default function ViewFiles() {
                 className="py-3 object-cover h-500"
               />
           
-{/** 
-<Player
-      title="Agent 327: Operation Barbershop"
-      playbackId="6d7el73r1y12chxr"
-      poster={<PosterImage />}
-      showPipButton
-      objectFit="cover"
-      priority
-    />
-*/}
-
               <div className="p-1">
-                <p style={{ height: "45px", overflow: 'hidden' }} className="text-xl text-blue-800 font-semibold leading-none"> {nft.name}      </p>
-                <p className="text-xl font-bold text-black pt-2">Size : {nft.size}  MB </p>
-                <p className="text-xl font-bold text-black pt-2">Published : {nft.created} </p>
-                <div style={{ height: '100px', overflow: 'hidden' }}>
-                    <p className="text-gray-700 pt-2">Description : {nft.description} </p>
+                <p style={{ height: "85px", overflow: 'hidden' }} className="text-xl text-blue-800 font-semibold leading-none">Title : {nft.name}      </p>
+               {/** <p className="text-xl font-bold text-black pt-2">Size : {nft.size}  MB </p>
+                 */}
+                <p className="text-xl font-bold text-black pt-2">Author : {nft.author} </p>
+                
+                <div style={{ height: '150px', overflow: 'hidden' }}>
+                    <p className="text-gray-700 pt-2">Abstract : {nft.description} </p>
                 </div>
                 
               </div>
 
               <div className="p-2 bg-black">
-                <button type="button" className="mt-1 w-full bg-blue-500 text-white font-bold py-2 px-12 rounded" onClick={() => NewsDetails(nft)}>Watch News</button>
+                <button type="button" className="mt-1 w-full bg-blue-500 text-white font-bold py-2 px-12 rounded" onClick={() => ArticleDetails(nft)}>Review Article</button>
               </div>
-              
-              {/** onClick={() => share(nft)} */}
-              <div className="p-2 bg-black">
-              <Popup trigger={<button type="button" className="w-full bg-purple-700 text-white font-bold py-2 px-2 rounded" >Get Share Link</button>} 
-                  position="bottom left">
-                <div className=" bg-blue-200 text-black font-bold py-2 px-2 rounded">{nft.sharelink}</div>
-                <button onClick={() => copyToClipBoard([nft.sharelink])}>Copy Link</button>
-                
-                 {copySuccess}
-                </Popup>
-
-                
-              </div>
+          
             </div>
           ))}
         </div>

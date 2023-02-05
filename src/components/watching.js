@@ -15,7 +15,7 @@ import ShareLink from "react-twitter-share-link";
 import Popup from 'reactjs-popup';
 //import 'reactjs-popup/dist/index.css';
 
-import blenderPoster from '../../public/images/logo.png';
+//import blenderPoster from '../../public/images/logo.png';
 import fileNFT from "../../artifacts/contracts/Artifacts.sol/Artifacts.json";
 import { ArtifactsAddress } from "../../config";
 
@@ -23,7 +23,7 @@ const containerStyle = {
   position: "relative",
   overflow: "hidden",
   width: "100%",
-  paddingTop: "56.25%", /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+  //paddingTop: "56.25%", /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
 };
 const responsiveIframe = {
   position: "absolute",
@@ -45,7 +45,7 @@ export default function Watching() {
   const [loadingState, setLoadingState] = useState("not-loaded");
   useEffect(() => {
     // eslint-disable-next-line no-use-before-define
-    loadVideo();
+    loadPaper();
     loadCount();
     console.log("Counter executed")
   }, []);
@@ -62,28 +62,19 @@ export default function Watching() {
     alert("This feature is under development because we want to give you the best expereince");
   }
 
-  async function getENSName() {
-    const address = owners;
-    const RPC2 = "https://eth.llamarpc.com";
-    const provider = new ethers.providers.JsonRpcProvider(RPC2);
-    const ename = await provider.lookupAddress(address); 
-    console.log("ENS name is ", ename)
-    return ename;
-    
-  }
-
-  const rpcUrl = "https://matic-mumbai.chainstacklabs.com";
+  const rpcUrl = "https://filecoin-hyperspace.chainstacklabs.com/rpc/v1";
+  // const rpcUrl = "https://api.hyperspace.node.glif.io/rpc/v1";
    // const rpcUrl = "localhost";
 
-   const { query: vid } = router; 
-   const props =  vid ;
-   console.log('Props result is without ', props.vid);
+   const { query: pid } = router; 
+   const props =  pid ;
+   console.log('Props result is without ', props.pid);
 
-  async function loadVideo() {
+  async function loadPaper() {
     /* create a generic provider and query for items */
-    console.log("loading News for item", props.vid);
-    const vid = props.vid;
-    console.log("vid is ", vid);
+    console.log("loading Article for item", props.pid);
+    const pid = props.pid;
+    console.log("pid is ", pid);
 
     const web3Modal = new Web3Modal({
       network: 'mainnet',
@@ -93,8 +84,8 @@ export default function Watching() {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(ArtifactsAddress, fileNFT.abi, signer);
-    const data = await contract.fetchOneNews(vid);
-    const data2 = await contract.fetchViews(vid);
+    const data = await contract.fetchOneArtifact(pid);
+    const data2 = await contract.fetchItemViews(pid);
 
     /*
     *  map over items returned from smart contract and format
@@ -104,67 +95,48 @@ export default function Watching() {
       console.log("inside data mapping");
       const tokenUri = await contract.tokenURI(i.tokenId);
       console.log("token Uri is ", tokenUri);
-      const httpUri = tokenUri;
+      const httpUri = getIPFSGatewayURL(tokenUri);
       console.log("Http Uri is ", httpUri);
-      const meta = await axios.get(tokenUri);
+      const meta = await axios.get(httpUri);
       
       //getENSName();
-
-      const count = (data2.toNumber())+1
-      console.log("News data fetched from contract");
-      console.log("data2 value is ", data2);
-      console.log("count value is ", count);
+      const count = (data2.toNumber())
       const filename = i.fileName;
       console.log("Filename is ", filename);
-      const created = new Date((i.dateCreated).toNumber() * 1000).toLocaleDateString();
-      console.log("date created is ", created);
       const description = i.description;
       console.log("description is ", description);
-      const filesize = Math.round(((i.fileSize).toString() /1000000) * 100) / 100;
-      console.log("Filesize is ", filesize);
 
       const item = {
         tokenId: i.tokenId.toNumber(),
-        image: httpUri,
-        name: filename,
-        created: created,
-        description: description,
-        size: filesize,
+        image: getIPFSGatewayURL(meta.data.image),
+        name: meta.data.name,
+        description: meta.data.description,
+        author: meta.data.properties.author,
+        category: meta.data.properties.category,
+        type: meta.data.type,
+        affiliate: meta.data.properties.affiliate,
         sharelink: httpUri,
-        owner: i.owner.toString(),
         view: count,
       };
       console.log("item returned is ", item);
       setOwners(item.owner);
-      // ethers.js automatically checks that the forward resolution matches.
-      //let ensAddress = item.owner;
-      //let NameLookup = await provider.lookupAddress(ensAddress);
-      //setEnsName(NameLookup);
-      // Calling conditions to send Milestone NFT from NFTPort
-      if (count == 1) {
-        mintViewMilestone();
-      };
-
-      if (count == 100) {
-        mintViewMilestone();
-      };
-
-      if (count == 1000) {
-        mintViewMilestone();
-      };
-
       return item;
     }));
     setNfts(items);
     setLoadingState("loaded");
 
   }
+  const getIPFSGatewayURL = (ipfsURL) => {
+    const urlArray = ipfsURL.split("/");
+    const ipfsGateWayURL = `https://${urlArray[2]}.ipfs.nftstorage.link/${urlArray[3]}`;
+    return ipfsGateWayURL;
+  };
 
   async function loadCount() {
-    /* create a generic provider and query for items */
-      console.log("loading News for item", props.vid);
-    const vid = props.vid;
-    console.log("vid is ", vid);
+    /* create a generic propider and query for items */
+      console.log("loading News for item", props.pid);
+    const pid = props.pid;
+    console.log("pid is ", pid);
 
     try {
       //setTxStatus("Adding transaction to Polygon Mumbai..");
@@ -172,38 +144,18 @@ export default function Watching() {
       const connection = await web3Modal.connect();
       const provider = new ethers.providers.Web3Provider(connection);
       const connectedContract = new ethers.Contract(ArtifactsAddress, fileNFT.abi, provider.getSigner());
-      console.log("Count variable is ", vid);
+      console.log("Count variable is ", pid);
 
-      const mintNFTTx = await connectedContract.createViewItem(vid);
+      const mintNFTTx = await connectedContract.createViewItem(pid);
       console.log("View Counter successfully retrieved from Blockchain");
       await mintNFTTx.wait();
       return mintNFTTx;
     } catch (error) {
-      setErrorMessage("Failed to send tx to Mumbai.");
+      setErrorMessage("Failed to send tx to Filecoin.");
       console.log(error);
     }
  
   };
-// NFTPort Function to Mint Milestone
-  async function mintViewMilestone() {
-    const options = {
-      method: 'POST',
-      url: 'https://api.nftport.xyz/v0/mints/easy/urls',
-      headers: { 'Content-Type': 'application/json', Authorization: '768bfb7a-087d-4ee1-8bb0-5498cc36ad46' },
-      data: {
-        chain: 'polygon',
-        name: 'streamagenic',
-        description: 'NFT for your video getting views. Congratulations!',
-        file_url: 'https://bafkreidugtjoxts62zsi32riqsjlpt643vnqxtaljo4tba2n2dlqvb2jyq.ipfs.w3s.link/',
-        mint_to_address: {owners},
-      },
-    };
-    axios.request(options).then((response) => {
-      console.log(response.data);
-    }).catch((error) => {
-      console.error(error);
-    });
-  }
 
   const PosterImage = () => {
     return (
@@ -230,36 +182,26 @@ export default function Watching() {
     <Box as="section"  sx={styles.section} className="bg-blue-800 ">
     <>
     <div className=" text-2xl text-center text-white font-bold ">
-        <h1>News Details</h1>
+        <h1>Article Review Details</h1>
       </div>
       <div className="grid grid-cols-3 grid-rows-2 col-gap-2 row-gap-5 mx-20 my-5">
 
-	<div className="col-start-1 col-end-3 row-span-2 text-white bg-black text-4xl flex items-center justify-center border-4 border-red-500" style={containerStyle}>
+	<div className="col-start-1 col-end-3 row-span-2 text-white bg-white text-4xl flex items-center justify-center border-4 border-red-500" style={containerStyle}>
 
-  <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-4 pt-4">
-{nfts.map((nft, i) => (
-    <div key={i} className="shadow rounded-xl overflow-hidden min-w-full " style={responsiveIframe}>
+  <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-4 pt-1" style={responsiveIframe}>
+    {nfts.map((nft, i) => (
+    <div key={i} className="shadow rounded-xl overflow-hidden w-full " >
+                <iframe
+                  title={nft.name}
+                  frameBorder="0"
+                  scrolling="no"
+                  height="950px"
+                  width="100%"
+                  objectFit="cover"
+                  src={`${nft.image}#toolbar=0`}
+                  //className="object-cover h-500 w-full"
+                />
 
-<Player
-      title={nft.name}
-      src={nft.sharelink}
-      //playbackId="6d7el73r1y12chxr"
-      autoUrlUpload={{ fallback: true, ipfsGateway: 'https://w3s.link' }}
-      poster={<PosterImage />}
-      showPipButton
-      objectFit="cover"
-      priority
-
-    />
-
-      {/**
-      <iframe
-        title="video"
-        style={responsiveIframe}
-        src={`${nft.image}#toolbar=0`}
-        className="py-3 object-cover h-full"
-      />
- */}
     </div>
   ))
 }
@@ -268,10 +210,25 @@ export default function Watching() {
   </div>
 
 	<div className="row-span-3 text-black bg-white text-2xl flex text-left p-3 ">
+    
     {nfts.map((nft, i) => (
     <div key={i} className="overflow-auto tect-blue-800  bg-white shadow rounded-xl font-bold">
+      <div className=" bg-white shadow rounded-xl overflow-hidden min-w-full" >
+    <Player
+      title={nft.name}
+      src={nft.sharelink}
+      //playbackId="6d7el73r1y12chxr"
+      //autoUrlUpload={{ fallback: true, ipfsGateway: 'https://w3s.link' }}
+      //poster={<PosterImage />}
+      //showPipButton
+      objectFit="fill"
+      //priority
+    />
+    </div>
+    <br/>
+
       <div className="p-1">
-        <p style={{ height: "20px" }} className="text-3xl font-semibold underline">Video Details</p>
+        <p style={{ height: "20px" }} className="text-3xl font-semibold underline">Article Details</p>
       </div>
       <br/>
       <div className="p-1">
@@ -280,27 +237,31 @@ export default function Watching() {
 
       <br/>
       <div className="p-1">
-        <p style={{ height: "20px" }} className="text-xl font-semibold">Video id: {nft.tokenId}</p>
+        <p style={{ height: "20px" }} className="text-xl font-semibold">Article id: {nft.tokenId}</p>
       </div>
       <br/>
       <div className="p-1">
-        <p style={{ height: "40px" }} className="text-xl font-semibold">Video Name : {nft.name}</p>
+        <p style={{ height: "40px" }} className="text-xl font-semibold">Article Name : {nft.name}</p>
       </div>
       <br/>
       <div className="p-1">
-        <p style={{ height: "40px" }} className="text-xl font-semibold">Description: {nft.description}</p>
+        <p style={{ height: "100px" }} className="text-xl font-semibold">Abstract: {nft.description}</p>
       </div>
       <br/>
       <div className="p-1">
-        <p style={{ height: "20px" }} className="text-xl font-semibold">Size : {nft.size} {' '} MB</p>
+        <p style={{ height: "20px" }} className="text-xl font-semibold">Author: {nft.author}</p>
       </div>
       <br/>
       <div className="p-1">
-        <p style={{ height: "20px" }} className="text-xl font-semibold"> Published on: {nft.created}</p>
+        <p style={{ height: "20px" }} className="text-xl font-semibold"> Paper Type: {nft.type}</p>
       </div>
       <br/>
       <div className="p-1">
-        <p style={{ height: "20px" }} className="text-xl font-semibold">Publisher: {nft.owner}</p>
+        <p style={{ height: "20px" }} className="text-xl font-semibold"> Category: {nft.category}</p>
+      </div>
+      <br/>
+      <div className="p-1">
+        <p style={{ height: "20px" }} className="text-xl font-semibold">affiliate: {nft.affiliate}</p>
       </div>
       <br/>
       <div className="p-1 mb-5">
@@ -315,8 +276,21 @@ export default function Watching() {
 
   
 		<div className="col-span-3 text-white pt-3  text-xl flex items-center justify-center">
+
     <div className="p-4">
                   <button type="button" className="w-full bg-blue-800 text-white font-bold py-2 px-12 border-b-4 border-blue-200 hover:border-blue-500 rounded-full" onClick={() => Claim()}>Drop your comment</button>
+                </div>
+                <div className="p-4">
+                  <button type="button" className="w-full bg-blue-800 text-white font-bold py-2 px-12 border-b-4 border-blue-200 hover:border-blue-500 rounded-full">
+                    <a
+                      className="social-icon-link github"
+                      href="https://streamagenic-meeting.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="chat"
+                    >Vote NO 
+                    </a>
+                  </button>
                 </div>
                 <div className="p-4">
                   <button type="button" className="w-full bg-blue-800 text-white font-bold py-2 px-12 border-b-4 border-blue-200 hover:border-blue-500 rounded-full">
@@ -326,10 +300,11 @@ export default function Watching() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="chat"
-                    >Chat with Publisher 
+                    >Vote YES 
                     </a>
                   </button>
                 </div>
+                {/**
                 <div className="p-4">
                 <ShareLink link="https://streamagenic.vercel.app/explore" text="News on Demand from eye witness all around the globe!" hashtags="blockchaintechnology streamagenic Livepeer holyaustin IPFS">
               {(link) => (
@@ -339,18 +314,7 @@ export default function Watching() {
             </ShareLink>
                 </div>
 
-                <div className="p-4">
-                  <button type="button" className="w-full bg-blue-800 text-white font-bold py-2 px-12 border-b-4 border-blue-200 hover:border-blue-500 rounded-full">
-                    <a
-                      className="social-icon-link github"
-                      href="https://streamagenic-meeting.vercel.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="chat"
-                    >Video Conference 
-                    </a>
-                  </button>
-                </div>
+                 */}
 
             
     </div>
