@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://artifactsdao.vercel.app
+
+# Sitemaps
+Sitemap: https://artifactsdao.vercel.app/sitemap.xml
