@@ -20,14 +20,14 @@ We also need to enable massive scale data science on the data collected on these
 
 Frontend: NextJS, postcss, tailwindcss, Theme
 
-Web3 technologies: IPFS/filecoin (W3UI), Livepeer (livepeer.js), Web3Modal, XMTP, NFT Port, ENS, Lit Protocol, Polygon, Graph, Lens, Huddle01  
+Web3 technologies: IPFS/filecoin (Hyperspace), Livepeer (livepeer.js), Web3Modal, Huddle01  
 Backend: Solidity, Node.js
 
 Blockchain deployed to:  Polygon POS Mumbai Testnet
 
 ## Description
 
-              A decentralized Science (DeSci) Peer Review DataDAO for Publishing scientific papers and the results of their reproducible experiments (Artifacts) while providing incentives for scientists to upload new papers over time. Papers and artifacts are stored as open access and journals. They can store (as proofs) various artifacts from their experiment. DAO members can raise funds for research that are unorthodox or come from a unique source. Artificats are stored on Filecoin using Filecoin's service provider (SP) data deals and they are also rewarded.
+ A decentralized Science (DeSci) Peer Review DataDAO for Publishing scientific papers and the results of their reproducible experiments (Artifacts) while providing incentives for scientists to upload new papers over time. Papers and artifacts are stored as open-access journals. They can store (as proof) various artifacts from their experiment. DAO members can raise funds for research that are unorthodox or come from a unique source. Artifacts are stored on Filecoin using Filecoin's service provider (SP) data deals and they are also rewarded.
 
 The smart contract uses ERC-721 specification to hold metadata URI for papers published, The DataDAO contract for SP reward was also developed. DAO members vote for reserach work that would be includeded into the artifcats repository. ethers.js was used to interact with the smart contract. The contract was deployed to Hyperspace Teatnet on Filecoin EVM blockchain. The entire project demo was hosted on Spheron and Vercel.
 
@@ -47,7 +47,7 @@ FilecoinMarketConsumer Contract  deployed to: 0x1B7a6536f23a16e198246A3f80Cd646f
 Deploying DealRewarder...
 DealRewarder Contract  deployed to: 0x60cF847C6Ea49009ae290F749451F4CB66CAD0B2
 
- Youtube video link: <https://youtu.be/kZvxCGMPci8>
+ Youtube video link: <https://youtu.be/84Yt6xQ-o2Y>
 
 ## Connect with me and send me a mail
 
