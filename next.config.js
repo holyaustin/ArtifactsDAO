@@ -9,6 +9,9 @@ module.exports = withPlugins([optimizedImages], nextConfiguration);
 module.exports = {
   webpack5: true,
   swcMinify: false,
+  images: {
+    unoptimized: true,
+  },
   experiments: {
     topLevelAwait: true, 
     },

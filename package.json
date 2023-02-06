@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3016",
-    "build": "next build",
+    "build": "next build && next export",
     "serve": "next start",
     "export": "next export",
     "postbuild": "next-sitemap",
@@ -21,6 +21,7 @@
   "dependencies": {
     "@coinbase/wallet-sdk": "^3.4.0",
     "@glif/filecoin-address": "^2.0.20",
+    "@lighthouse-web3/sdk": "^0.1.12",
     "@livepeer/react": "^1.5.5",
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
