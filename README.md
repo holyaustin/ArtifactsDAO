@@ -27,56 +27,27 @@ Blockchain deployed to:  Polygon POS Mumbai Testnet
 
 ## Description
 
-              A decentralized Peer Review DataDAO for Publishing scientific papers and the results of their reproducible experiments (Artifacts) while provide incentives for scientists to upload new papers over time. Papers and artifacts are stored as open access and journals. They can store (as proofs) various artifacts from their experiment. DAO members can raise funds for research that are unorthodox or come from a unique source. Artificats and stored on Filecoin using Filecoin's service provider data deals.
+              A decentralized Science (DeSci) Peer Review DataDAO for Publishing scientific papers and the results of their reproducible experiments (Artifacts) while providing incentives for scientists to upload new papers over time. Papers and artifacts are stored as open access and journals. They can store (as proofs) various artifacts from their experiment. DAO members can raise funds for research that are unorthodox or come from a unique source. Artificats are stored on Filecoin using Filecoin's service provider (SP) data deals and they are also rewarded.
 
-The smart contract uses ERC-721 specification to hold metadata URI, ethers.js was used to interact with the smart contract. The contract was deployed to Mumbai blockchain. The entire project demo was hosted to Vercel.
+The smart contract uses ERC-721 specification to hold metadata URI for papers published, The DataDAO contract for SP reward was also developed. DAO members vote for reserach work that would be includeded into the artifcats repository. ethers.js was used to interact with the smart contract. The contract was deployed to Hyperspace Teatnet on Filecoin EVM blockchain. The entire project demo was hosted on Spheron and Vercel.
 
 ## Live DApp hosted on
 
-Live Dapp on Vercel: - <https://artifactsdao.vercel.app/>
+Live Dapp on Vercel <https://artifactsdao-8de3b5.spheron.app/>
 
-Deployed to Polygon Chain:
-  Polygon Mumbai deployed Address = "0x92b3556042052c12c962bEf9aCcad837405130a8"
+Live Dapp on Vercel: - <https://artifacts-dao.vercel.app/>
 
-  <http://mumbai.polyscan.com/#/contract/0x92b3556042052c12c962bEf9aCcad837405130a8>
+Deployed to Hyperspace Testnet:
+Artifacts deployed Address = "0xd853c72d627845B59a3Fc9880eEcF50D699bcBEB"
+
+Deploying Artifacts...
+Artifacts Contract deployed to: 0xd853c72d627845B59a3Fc9880eEcF50D699bcBEB
+Deploying FilecoinMarketConsumer...
+FilecoinMarketConsumer Contract  deployed to: 0x1B7a6536f23a16e198246A3f80Cd646f86856F11
+Deploying DealRewarder...
+DealRewarder Contract  deployed to: 0x60cF847C6Ea49009ae290F749451F4CB66CAD0B2
 
  Youtube video link: <https://youtu.be/kZvxCGMPci8>
-
-## Getting Started
-
-First, run the development server:
-
-```text
-clone the repo https://github.com/holyaustin/ArtifactsDAO
-# next is to 
-npm install
-# then
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3016](http://localhost:3016) with your browser to see the result.
-
-## How to run this project locally
-
-Try running some of the following tasks:
-
-Fork this repo using
-
-git clone <https://github.com/holyaustin/ArtifactsDAO>
-
-cd soldier-ant-colony
-
-npx hardhat node
-
-npx hardhat run scripts/deploy.js --network localhost
-
-npm run build
-
-## How to deploy to Polygon Mumbai  blockchain, update hardhat.config
-
-npx hardhat run scripts/deploy.js --network mumbai
 
 ## Connect with me and send me a mail
 
