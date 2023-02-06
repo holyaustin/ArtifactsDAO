@@ -47,7 +47,7 @@ FilecoinMarketConsumer Contract  deployed to: 0x1B7a6536f23a16e198246A3f80Cd646f
 Deploying DealRewarder...
 DealRewarder Contract  deployed to: 0x60cF847C6Ea49009ae290F749451F4CB66CAD0B2
 
- Youtube video link: <https://youtu.be/84Yt6xQ-o2Y>
+ Youtube video link: <https://youtu.be/84Yt6xQ-o2Y> 
 
 ## Connect with me and send me a mail
 

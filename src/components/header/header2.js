@@ -73,25 +73,23 @@ export default function Header() {
           <Link href="/">
           <a>Home</a>
           </Link>
-          <Link href="/explore">
+          <Link href="/dashboard">
           <a>Dashboard</a>
-          </Link>
-          <Link href="/preprint">
-          <a>Preprints</a>
           </Link>
           <Link href="/publish">
           <a>Publish</a>
           </Link>
+          <Link href="/approved">
+          <a>Approved-Artifacts</a>
+          </Link>
+
           <Link href="/streamlive">
-          <a>Approved-Artifacts </a>
+          <a>Stream Demo </a>
           </Link>
           <Link href="/videoplayer">
           <a> Video-Player</a>
           </Link>
-          <Link href="https://web3chat-kezayya.vercel.app/" target="_blank">
-          <a target="_blank">Chat </a>
-          </Link>
-          
+         
 {/**
           <Link href="/addfolder">
           <a>Video Marketplace</a>
