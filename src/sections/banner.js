@@ -38,14 +38,14 @@ const Banner = () => {
       <Container>
         <Box sx={styles.grid}>
           <Box as="form" sx={styles.domainCard}>
-            <Heading>ArtifactsDAO</Heading>
+            <Heading>Artifacts DAO</Heading>
             <div  style={{textAlign:'justify', fontSize: '20px', marginRight: '0.5rem', fontWeight: 'bold'}}>
               <p>
-              A decentralized Peer Review DataDAO for Publishing scientific papers and the results of their reproducible experiments (Artifacts) while provide incentives for scientists to upload new papers over time. Artificats and stored on Filecoin using Filecoin's service provider data deals.
+              A decentralized P2P Peer Review DataDAO for Publishing scientific papers and the results of their reproducible experiments (Artifacts) while provide incentives for scientists to upload new papers over time. Artificats and stored on Filecoin using Filecoin's service provider data deals.
               </p>
               <br />
             </div>
-            <div className="flex inline justify-between">
+            <div className="flex  justify-between">
             <ConnectWallet />
             <ConnectWallet2 />
             </div>
