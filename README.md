@@ -2,13 +2,11 @@
 
 ![Genic](https://bafkreic64ckzeog4qh635g2udaife6sq447tpnzdzms3lcnp4ti6hc6cjm.ipfs.w3s.link/)
 
-Video conference meeting for stremagenic app - A Decentralized Video News Sharing Platform where users upload news on demand.
-
 ## Introduction
 
-DataDAO for DeSci Projects build on top of FVM. DataDAOs are DAOs whose mission revolves around the preservation, curation, augmentation, and promotion of datasets considered valuable by their stakeholders.
+DataDAO for Decentralized Science (DeSci) Projects build on top of FEVM. DataDAOs are DAOs whose mission revolves around the preservation, curation, augmentation, and promotion of datasets considered valuable by their stakeholders.
 Decentralized Science [through DataDAOs]
-DataDAOs can be used to store open access papers and journals. They can store (as proofs) the results of reproducible experiments and provide incentives for scientists to upload new papers over time. They can raise funds for research that are unorthodox or come from a unique source.
+DataDAOs can be used to store open-access papers and journals. They can store (as proof) the results of reproducible experiments and provide incentives for scientists to upload new papers over time. They can raise funds for research that are unorthodox or come from a unique source.
 
 Can the peer review process be made more fair (perhaps through quadratic voting)?
 
@@ -18,12 +16,12 @@ We also need to enable massive scale data science on the data collected on these
 
 ## Web 3.0 technologies Used
 
-Frontend: NextJS, postcss, tailwindcss, Theme
+Frontend: NextJS, postcss, tailwindcss, Theme, Spheron, 
 
-Web3 technologies: IPFS/filecoin (Hyperspace), Livepeer (livepeer.js), Web3Modal, Huddle01  
-Backend: Solidity, Node.js
+Web3 technologies: IPFS/filecoin (Hyperspace), , Web3Modal, Huddle01  
+Backend: Solidity, Node.js, tableland, tellor, polybase, lit
 
-Blockchain deployed to:  Polygon POS Mumbai Testnet
+Blockchain deployed to:  FEVM Hyperspace testnet
 
 ## Description
 

@@ -7,6 +7,8 @@ import { NFTStorage } from "nft.storage";
 import { useRouter } from 'next/router'
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
+import { Polybase } from "@polybase/client";
+import { Database } from "@tableland/sdk";
 import axios from 'axios'
 import { rgba } from 'polished';
 import { Wallet, providers } from "ethers";
@@ -16,6 +18,19 @@ import fileNFT from "../../artifacts/contracts/Artifacts.sol/Artifacts.json";
 import { ArtifactsAddress } from "../../config";
 // const APIKEY = [process.env.NFT_STORAGE_API_KEY];
 const APIKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDA4Zjc4ODAwMkUzZDAwNEIxMDI3NTFGMUQ0OTJlNmI1NjNFODE3NmMiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY1MzA1NjE4NzM4MCwibmFtZSI6InBlbnNpb25maSJ9.agI-2V-FeK_eVRAZ-T6KGGfE9ltWrTUQ7brFzzYVwdM";
+
+// Default to grabbing a wallet connection in a browser
+
+ const db2 = new Database();
+
+// This is the table's `prefix`--a custom table value prefixed as part of the table's name
+
+const db = new Polybase({
+  defaultNamespace: "pk/0xa08044cc7ba5415c39c7f20ad88b04a82f7cf8e850d968cacf2bcddd46615a75afc495b1e69786fb67c542a70b91946e0ac02a61fdd7a17bb2fd407676b28afa/ArtifactsDAO",
+});
+// If you want to edit the contract code in the future,
+// you must sign the request when calling applySchema for the first time
+
 
 const MintFile = () => {
   const navigate = useRouter();
@@ -28,6 +43,11 @@ const MintFile = () => {
   const [txStatus, setTxStatus] = useState();
   const [formInput, updateFormInput] = useState({ name: "",  total: "", author: "", twitter: "",  country: "",  type: "",  category: "",  description: "",  affiliate: "" });
 
+  
+  
+  
+  
+  
   const handleFileUpload = (event) => {
     console.log("Paper for upload selected...");
     setUploadedFile(event.target.files[0]);
@@ -36,7 +56,16 @@ const MintFile = () => {
     setMetaDataURl("");
     setTxURL("");
   };
+  const PolybaseDB = async (metaData) => { // use this info for transak package
+    console.log("Inside Polybase");
+    console.log("db is ", db);
 
+    const tname = metaData.data.name;
+    console.log("name field is", tname);
+    const tcontact = metaData.data.properties.contact;
+    console.log("twitter field is", tcontact);
+    await db.collection("publication").create([metaData.url, tname, tcontact]);
+  };
   const handleFileUpload2 = (event) => {
     console.log("Artifact for upload selected...");
     setUploadedFile2(event.target.files[0]);
@@ -44,8 +73,8 @@ const MintFile = () => {
 
   const uploadPaper = async (inputFile, inputFile2) => {
     const { name, total, author, twitter, country, type, category, description, affiliate  } = formInput;
-    if (!name || !total || !author || !twitter || !country || !type || !category || !description|| !affiliate || !inputFile || !inputFile2) return;
-    const nftStorage = new NFTStorage({ token: APIKEY, });
+    if (!name || !total || !author || !twitter || !country || !type || !category || !description || !affiliate || !inputFile || !inputFile2) return;
+     const nftStorage = new NFTStorage({ token: APIKEY, });
     try {
       console.log("Trying to upload file to ipfs");
       setTxStatus("Uploading Article to IPFS");
@@ -67,8 +96,61 @@ const MintFile = () => {
       });
       console.log("metadata is: ", { metaData });
       setMetaDataURl(metaData.url);
-      console.log("metadata is: ", { metaData });
-      return metaData;
+    
+
+   // sending record to Polybase
+      console.log("Inside Polybase");
+      console.log("db is ", db);
+      const web3Modal = new Web3Modal();
+      const connection = await web3Modal.connect();
+      const provider = new ethers.providers.Web3Provider(connection);  
+      const signer = provider.getSigner();
+   
+      const id = metaData.url;
+      console.log("id field is", id);
+      const publicKey = signer;
+      console.log("publicKey field is", publicKey);
+      const paperTitle = metaData.data.name; 
+      console.log("paperTitle field is", paperTitle);
+      const leadAuthor = metaData.data.properties.total; 
+      console.log("tleadAuthorr field is", leadAuthor);
+      const correspondingAuthor = metaData.data.properties.author; 
+      console.log("correspondingAuthor field is", correspondingAuthor);
+      const twitter1 = metaData.data.properties.twitter; 
+      console.log("twitter field is",twitter);
+      const country1 = metaData.data.properties.country; 
+      console.log("country field is", country);
+      const researchArea = metaData.data.properties.category; 
+      console.log("researchArea field is", researchArea);
+      const paperType = metaData.data.properties.type; 
+      console.log("paperType field is", paperType);
+      const abstract = metaData.data.description; 
+      console.log("abstract field is", abstract);
+      const affiliation = metaData.data.properties.affiliate; 
+      console.log("taffiliation field is", affiliation);
+/**
+      const prefix = "ao_table";
+
+      const { meta: create } = await db2
+      .prepare(`CREATE TABLE ${prefix} (id integer primary key, pname text, total text, pauthor text, twitter text, country text, ptype text, pcategory text, pdescription text, paffiliate text);`)
+      .run();
+      // The table's `name` is in the format `{prefix}_{chainId}_{tableId}`
+        const { tname } = create.txn; // e.g., my_sdk_table_80001_311
+
+      // Insert a row into the table
+      const { meta: insert } = await db2
+      .prepare(`INSERT INTO ${tname} (name, total, author, twitter, country, type, category, description, affiliate) VALUES (paperTitle, leadAuthor, correspondingAuthor, twitter1, country1, researchArea, paperType, abstract, affiliation );`)
+      .bind(0, "Bobby Tables")
+      .run();
+
+      // Wait for transaction finality
+      await insert.txn.wait();
+ */
+   //   await db.collection("publication").create([id,publicKey,paperTitle, leadAuthor, correspondingAuthor, twitter, country, researchArea, paperType, abstract, affiliation]);
+      
+      console.log("metadata down: ", { metaData });
+  return metaData;
+      
     } catch (error) {
       setErrorMessage("Could store file to NFT.Storage - Aborted file upload.");
       console.log("Error Uploading Content", error);
@@ -100,7 +182,7 @@ const MintFile = () => {
     const imgViewString = getIPFSGatewayURL(metaData.data.image.pathname);
     console.log("image ipfs path is", imgViewString);
     setImageView(imgViewString);
-    setMetaDataURl(getIPFSGatewayURL(metaData.url));
+   setMetaDataURl(getIPFSGatewayURL(metaData.url));
     setTxURL(`https://hyperspace.filfox.info/en/tx/${mintNFTTx.hash}`);
     setTxStatus("Article submission was successfully!");
     console.log("Article submission completed");
@@ -121,7 +203,7 @@ const MintFile = () => {
     // mintReward();
 
     //5. navigate("/explore");
-    navigate.push('/dashboard');
+   navigate.push('/dashboard');
   };
 
   const getIPFSGatewayURL = (ipfsURL) => {
@@ -146,10 +228,10 @@ const MintFile = () => {
           />
           <select
             className="bg-white mt-3 border rounded p-2 text-xl"
-            placeholder="Choose research area"
+            placeholder="Choose total authors"
             // value={this.state.value}
             onChange={(e) => updateFormInput({ ...formInput, total: e.target.value })}
-          ><option value="0">Total Author(s)</option>
+          ><option value="0">Select Total Numbers of Author(s)</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>

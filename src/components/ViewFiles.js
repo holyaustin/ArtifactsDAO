@@ -30,8 +30,8 @@ export default function ViewFiles() {
     loadfileNFT();
   }, []);
 
-  const rpcUrl = "https://filecoin-hyperspace.chainstacklabs.com/rpc/v1";
-  // const rpcUrl = "https://api.hyperspace.node.glif.io/rpc/v1";
+  //const rpcUrl = "https://filecoin-hyperspace.chainstacklabs.com/rpc/v1";
+   const rpcUrl = "https://api.hyperspace.node.glif.io/rpc/v1";
    // const rpcUrl = "localhost";
 
   async function loadfileNFT() {
