@@ -72,4 +72,47 @@ Deploying FilecoinMarketConsumer...
 FilecoinMarketConsumer deployed to: 0x1B7a6536f23a16e198246A3f80Cd646f86856F11
 Deploying DealRewarder...
 DealRewarder deployed to: 0x60cF847C6Ea49009ae290F749451F4CB66CAD0B2
-Done in 218.06s.
+
+DealClient: 0x506eb3bF021C4a2Cf23aD212671AC7054B487D60
+
+
+Upload details
+
+pieceCid: baga6ea4seaqjleoo7ald6z6ow7r6zhjeajictrpmik4yatt6qndejkd55tjtmmi
+fileName: AnomalyDetection.pdf
+payloadCid: bafybeihbbl3lwmgbe2w6tghph6jsgaanrtho63mmadoznbikxf7vkd6mai
+mimeType: application/pdf
+createdAt: 1685015244464
+carSize: 613349
+lastUpdate: 1685015245521
+fileStatus: CAR Created
+fileSize: 613144
+id: 48b05f5a-e750-4eb4-9e67-85b492c0b16f
+pieceSize: 1048576
+
+car CID: bafybeigougc4wofed3vuufqkknuogbkq5bw4koyv26y4zmlcvwjkzacctu
+http url: <https://bafybeigougc4wofed3vuufqkknuogbkq5bw4koyv26y4zmlcvwjkzacctu.ipfs.w3s.link/ipfs/bafybeigougc4wofed3vuufqkknuogbkq5bw4koyv26y4zmlcvwjkzacctu/48b05f5a-e750-4eb4-9e67-85b492c0b16f.car>
+
+Creating a Deal Proposal Payload
+  const DealRequestStruct = [
+    "baga6ea4seaqjleoo7ald6z6ow7r6zhjeajictrpmik4yatt6qndejkd55tjtmmi", // pieceCID (Generated in previous step)
+    1048576, // pieceSize (Generated in previous step)
+    false, // verifiedDeal (whether the deal has datacap or not)
+    "baga6ea4seaqjleoo7ald6z6ow7r6zhjeajictrpmik4yatt6qndejkd55tjtmmi", // DataCID (generated in previous step)
+    520000, // startEpoch (when you want the storage to start)
+    1555200, // endEpoch (when you want the storage to end)
+    0, // storagePricePerEpoch (how much attoFIL per GiB per 30s you are offering for this deal, set to 0 for a free deal)
+    0, // providerCollateral (how much collateral the provider must put up for the deal)
+    0, // clientCollateral (how much collateral you, the client, must put up for the deal)
+    1, // extraParamsVersion (set to 1)
+    extraParamsV1, // see below
+  ];
+
+    const extraParamsV1 = [
+    "https://bafybeigougc4wofed3vuufqkknuogbkq5bw4koyv26y4zmlcvwjkzacctu.ipfs.w3s.link/ipfs/bafybeigougc4wofed3vuufqkknuogbkq5bw4koyv26y4zmlcvwjkzacctu/48b05f5a-e750-4eb4-9e67-85b492c0b16f.car", // carLink (Generated in previous step)
+    613349, // carSize (Generated in previous step).
+    false, // skipIpniAnnounce (whether or not the deal should be announced to IPNI indexers, set to false)
+    false, // removeUnsealedCopy (whether or not the storage provider should remove an unsealed copy. Set to false)
+  ];
+
+  Deal: https://hyperspace.filfox.info/en/deal/1824
