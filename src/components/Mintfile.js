@@ -9,6 +9,7 @@ import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 import { Polybase } from "@polybase/client";
 import { Database } from "@tableland/sdk";
+import SpheronClient, { ProtocolEnum } from "@spheron/storage"; 
 import axios from 'axios'
 import { rgba } from 'polished';
 import { Wallet, providers } from "ethers";
@@ -19,6 +20,10 @@ import { ArtifactsAddress } from "../../config";
 // const APIKEY = [process.env.NFT_STORAGE_API_KEY];
 const APIKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDA4Zjc4ODAwMkUzZDAwNEIxMDI3NTFGMUQ0OTJlNmI1NjNFODE3NmMiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY1MzA1NjE4NzM4MCwibmFtZSI6InBlbnNpb25maSJ9.agI-2V-FeK_eVRAZ-T6KGGfE9ltWrTUQ7brFzzYVwdM";
 
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiI3NTBjMmQ3NTg0MTI3ZjlmMWZiNDM0ZGE1N2EwZTVmZjY0MDczY2FjMjg1NGZhZDVjYzllM2U0YmZjNDI2NWQzNGE1ZWRhMjEyODJjNzQzZTc1MGU4M2VlMTM3N2E3NmY3NmNmNWIyMmFhNzAxODFkZWZhZjg1NTFhYjMzNjRhNCIsImlhdCI6MTY4NTAzMTQyOCwiaXNzIjoid3d3LnNwaGVyb24ubmV0d29yayJ9.YGZxsjjctjxxsN2WMUiB4xffJVUeacCErkbPFk0QFNc';
+const client = new SpheronClient({ token }); 
+
+let currentlyUploaded = 0; 
 // Default to grabbing a wallet connection in a browser
 
  const db2 = new Database();
@@ -97,6 +102,23 @@ const MintFile = () => {
       console.log("metadata is: ", { metaData });
       setMetaDataURl(metaData.url);
     
+// uploading to spheron SDK
+      const { uploadId, bucketId, protocolLink, dynamicLinks } = await client.upload(
+        inputFile,
+        {
+          protocol: ProtocolEnum.IPFS,
+          name,
+          onUploadInitiated: (uploadId) => {
+             console.log(`Upload with id ${uploadId} started...`);
+          },
+          onChunkUploaded: (uploadedSize, totalSize) => {
+            currentlyUploaded += uploadedSize;
+             console.log(`Uploaded ${currentlyUploaded} of ${totalSize} Bytes.`);
+          },
+        }
+      );
+
+
 
    // sending record to Polybase
       console.log("Inside Polybase");

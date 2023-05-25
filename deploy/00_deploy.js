@@ -42,7 +42,25 @@ module.exports = async ({ deployments }) => {
     await dealRewarder.deployed()
     console.log('DealRewarder deployed to:', dealRewarder.address);
 
+    //deploy DealClient
+    const DealClient = await ethers.getContractFactory('DealRewarder', wallet);
+    console.log('Deploying DealRewarder...');
+    const dealClient = await DealClient.deploy();
+    await dealClient.deployed()
+    console.log('DealClient deployed to:', dealClient.address);
+
+ {/**
+    const dealClient = await deploy("DealClient", {
+        from: wallet.address,
+        args: [],
+        log: true,
+    });
+ */}
+    
     fs.writeFileSync('./config.js', `
     export const ArtifactsAddress = "${artifacts.address}"
+    export const filecoinMarketConsumerAddress = "${filecoinMarketConsumer.address}"
+    export const dealRewarderAddress = "${dealRewarder.address}"
+    export const dealClientAddress = "${dealClient.address}"
     `)
 }
