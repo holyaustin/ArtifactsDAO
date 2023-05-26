@@ -9,7 +9,7 @@ import CreateDeal from '../components/createdeal';
 export default function NewDeal() {
   return (
     <ThemeProvider theme={theme}>
-          <Head>
+    <Head>
       <link rel="shortcut icon" href="/images/logo.png" />
     </Head>
       <Layout>

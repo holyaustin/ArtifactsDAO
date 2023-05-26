@@ -83,11 +83,11 @@ export default function Header() {
           <a>Approved-Artifacts</a>
           </Link>
 
-          <Link href="/streamlive">
-          <a>Stream Demo </a>
+          <Link href="/newdeal">
+          <a>Create-Deal </a>
           </Link>
           <Link href="/videoplayer">
-          <a> Video-Player</a>
+          <a>Demo-Player</a>
           </Link>
          
 {/**

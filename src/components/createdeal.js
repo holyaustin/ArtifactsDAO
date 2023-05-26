@@ -5,6 +5,7 @@ import contract from "../contracts/DealClient.json";
 import "react-tooltip/dist/react-tooltip.css";
 import { Tooltip } from "react-tooltip";
 import { ethers } from "ethers";
+import Web3Modal from "web3modal";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import Spinner from 'react-bootstrap/Spinner';
 const CID = require("cids");
@@ -74,7 +75,11 @@ function Inputs() {
       cid = new CID(commP);
       const { ethereum } = window;
       if (ethereum) {
-        const provider = new ethers.BrowserProvider(ethereum);
+        const web3Modal = new Web3Modal();
+        const connection = await web3Modal.connect();
+        const provider = new ethers.providers.Web3Provider(connection);
+
+        //const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = await provider.getSigner();
         dealClient = new ethers.Contract(
           contractAddress,
@@ -139,7 +144,11 @@ function Inputs() {
     }
     const rpcUrl = "https://data-seed-prebsc-1-s1.binance.org:8545";
     // const rpcUrl = "http://localhost:8545";
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    //const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+
     const network = await provider.getNetwork();
     setNetwork(network.chainId);
     console.log(network.chainId);
@@ -174,7 +183,7 @@ function Inputs() {
       <div style={{ display: "flex" }}> <div class="child-1-cw"> 
       <button
         onClick={connectWalletHandler}
-        className="cta-button connect-wallet-button"
+        class="cta-button connect-wallet-button"
       >
         Connect Wallet
       </button>
@@ -224,9 +233,9 @@ function Inputs() {
     <Box as="section"  sx={styles.section}>
       <div className="flex justify-center bg-pink-100">
       <div className="flex flex-col pb-12 ">
-      <div className="flex flex-row mb-14 "> <div class="child-1-cw"> 
+      <div className="flex flex-row mb-14 "> 
         {connectWalletButton()}
-      </div></div>
+      </div>
 
       <form className="flex flex-col w-full  "  onSubmit={handleSubmit}>
 
@@ -343,21 +352,21 @@ function Inputs() {
         >
           Submit
         </button>
-        <div style={{ color: "red" }}> {errorMessageSubmit} </div>
+        <div style={{ color: "red" }} > {errorMessageSubmit} </div>
         { proposingDeal && <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
+          <span className="visually-hidden text-lg">Loading...</span>
         </Spinner>}
-        <div style={{ color: "green" }}> {txSubmitted} </div>
+        <div style={{ color: "green" }} className="text-lg"> {txSubmitted} </div>
       </form>
 
       <br />
       <br />
-      <div class="child-1-hg"> 
+      <div class="child-1-hg" className="text-lg"> 
         <div style={{ display: "flex", width: "50%", margin: "auto" }}> 
           {dealIDButton()}
         </div>
       </div>
-      {dealID && <div style={{ color: "green", margin:"auto" }}> Deal: {dealID}  </div>}
+      {dealID && <div style={{ color: "green", margin:"auto" }} className="text-lg"> Deal: {dealID}  </div>}
 
         </div>
         </div>
